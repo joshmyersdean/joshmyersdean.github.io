@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119964371-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-119964371-1');
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Semantic Pixel Distances for Image Editing</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/business-frontpage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Image Background Page Header -->
+    <!-- Note: The background image is set within the business-casual.css file. -->
+    <!-- Page Content -->
+    <div class="container">
+        <!-- /.row -->
+
+        <h1>Semantic Pixel Distances for Image Editing</h1>
+        <h3><a target="_blank" href="https://www.linkedin.com/in/joshmyersdean">Josh Myers-Dean</a>
+          and
+          <a target="_blank" href="https://facultyweb.cs.wwu.edu/~wehrwes/index.html">Scott Wehrwein</a>
+
+
+        </h3>
+        <h4 class = "text-muted">NTIRE Workshop at CVPR 2020 (Oral Presentation)</h4>
+
+
+        <div class="row">
+        <div class="col-sm-8 lead center-block">
+          <h1><img src="semdist_teaser.gif" class="img-responsive img-rounded" alt=""></h1>
+        </div>
+        </div> <!--row-->
+        <div class="row">
+        <div class="col-sm-8 block-center">
+            <h3>TL;DR</h3>
+            <p>We use semantic feature vectors in addition to RGB vectors to compare pixels for similarity in image editing applications. In seam carving, our approach (left) preserves important semantics better than the baseline (right).</p>
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="semdist.pdf">Paper (5.5MB PDF)</a></li>
+              <li><a href="https://www.youtube.com/watch?v=MX5fuWZaWbI">Video</a> (via youtube; also embedded below)</li>
+              <li>Code (to be released later this year)</li>
+            </ul>
+
+        </div>
+        </div> <!-- row -->
+
+
+        <div class="row">
+        <h3>Presentation Video</h3>
+        <div class="embed-responsive embed-responsive-16by9 col-xs-12 text-center">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MX5fuWZaWbI" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        </div> <!-- row -->
+
+        <div class="col-sm-12">
+            <h3>Abstract</h3>
+            <p>Many image editing techniques make processing decisions based on measures of similarity between pairs of pixels. Traditionally, pixel similarity is measured using a simple L2 distance on RGB or luminance values. In this work,we explore a richer notion of similarity based on feature embeddings learned by convolutional neural networks. We propose to measure pixel similarity by combining distance in a semantically-meaningful feature embedding with traditional color difference. Using semantic features from the penultimate layer of an off-the-shelf semantic segmentation model, we evaluate our distance measure in two image editing applications. A user study shows that incorporating semantic distances into content-aware resizing via seam carving produces improved results. Off-the-shelf semantic features are found to have mixed effectiveness in content-based range masking, suggesting that training better general-purpose pixel embeddings presents a promising future direction for creating semantically-meaningful feature spaces that can be used in a variety of applications.</p>
+            <h3>Bibtex</h3>
+            <p>
+            <pre>
+@inproceedings{Myers-Dean_2020_CVPR_Workshops,
+    title = {Semantic Pixel Distances for Image Editing},
+    author = {Josh Myers-Dean and Scott Wehrwein},
+    booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month = {June},
+    year = {2020}
+} </pre>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        </footer>
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

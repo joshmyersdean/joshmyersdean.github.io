@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Interactive Segmentation for Diverse Gesture Types without Context</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/business-frontpage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Top</a>
+                    </li>
+                    <li> <a href="outreach.html">Outreach</a> </li>
+                    <li> <a href="#about">About</a> </li>
+                    <li> <a href="#publications">Publications</a> </li>
+                    <li> <a href="resources.html">Resources</a> </li>
+                    <li> <a href="inspiration.html">Work I Like</a> </li>
+                    <li> <a href="cv.html">CV</a> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Image Background Page Header -->
+    <!-- Note: The background image is set within the business-casual.css file. -->
+    <!-- Page Content -->
+    <div class="container">
+        <!-- /.row -->
+
+        <h2>Interactive Segmentation for Diverse Gesture Types without Context</h2>
+        <h3> <b>Josh Myers-Dean</b>, Yifei Fan, Brian Price, Wilson Chan, Danna Gurari </h3>
+        <h4 class = "text-muted">IEEE Winter Conference on Applications of Computer Vision (WACV) 2024</h4>
+
+
+        <div class="row">
+        <div class="col-sm-8 lead center-block">
+          <img src="../img/dig.png" class="img-responsive img-rounded" alt="TODO">
+        </div>
+        </div> <!--row-->
+        <div class="row">
+        <div class="col-sm-8 block-center">
+            <h3>TL;DR</h3>
+            <p>We reframe the interactive segmentation task such that algorithms only accept a marking from a user. Under our new task
+               algorithms do not need to know the tool a user is using (e.g., scribbles, clicks) or what the context of an interaction is (i.e., either adding or subtracting content).
+            </p>
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a class="btn btn-default" href="https://openaccess.thecvf.com/content/WACV2024/papers/Myers-Dean_Interactive_Segmentation_for_Diverse_Gesture_Types_Without_Context_WACV_2024_paper.pdf">Paper (3 MB PDF)</a></li>
+              <li><a class="btn btn-default" href="https://github.com/joshmyersdean/dig">Code/API (Github)</a></li>
+              <li><a class="btn btn-default" href="https://openaccess.thecvf.com/content/WACV2024/supplemental/Myers-Dean_Interactive_Segmentation_for_WACV_2024_supplemental.pdf">Supplemental Material</a></li>
+              <li><a class="btn btn-default" href="https://o365coloradoedu-my.sharepoint.com/:f:/g/personal/jomy5901_colorado_edu/EuRcuFEdTdhFje_uBObq-gYBx8y8xEOqMxi2BmoIRlYqiQ">Data</a></li>
+              <li><a class="btn btn-default" href="https://github.com/joshmyersdean/dig/blob/main/DATA.md">Data Documentation</a></li>
+            </ul>
+
+        </div>
+        </div> <!-- row -->
+
+
+        <div class="col-sm-12">
+            <h3>Abstract</h3>
+            <p>Interactive segmentation entails a human marking an image to guide how a model either creates or edits a segmentation. Our work addresses limitations of existing methods: they either only support one gesture type for marking an image (eg, either clicks or scribbles) or require knowledge of the gesture type being employed, and require specifying whether marked regions should be included versus excluded in the final segmentation. We instead propose a simplified interactive segmentation task where a user only must mark an image, where the input can be of any gesture type without specifying the gesture type. We support this new task by introducing the first interactive segmentation dataset with multiple gesture types as well as a new evaluation metric capable of holistically evaluating interactive segmentation algorithms. We then analyze numerous interactive segmentation algorithms, including ones adapted for our novel task. While we observe promising performance overall, we also highlight areas for future improvement. To facilitate further extensions of this work, we publicly share our new dataset at https://github. com/joshmyersdean/dig.</p>
+            <h3>Bibtex</h3>
+            <p>
+            <pre>
+                @InProceedings{Myers-Dean_2024_WACV,
+                    author    = {Myers-Dean, Josh and Fan, Yifei and Price, Brian and Chan, Wilson and Gurari, Danna},
+                    title     = {Interactive Segmentation for Diverse Gesture Types Without Context},
+                    booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+                    month     = {January},
+                    year      = {2024},
+                    pages     = {7198-7208}
+                } </pre>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+        </footer>
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
