@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intro AI 3</title>
+    <link rel="stylesheet" href="../css/activities.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="mt-4 mb-4">
+            <h1 class="text-center">Activity 1: Handwritten Digit Recognition</h1>
+        </header>
+        <section class="introduction mb-4">
+            <p>For this activity, we will use a pre-built AI to recognize handwritten digits from the MNIST database, a classic dataset in computer vision. MNIST is a database of handwritten numbers from 0-9, thus AI trained on this data can only recognize digits from 0-9.</p>
+            <a href="https://en.wikipedia.org/wiki/MNIST_database">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/MnistExamplesModified.png/320px-MnistExamplesModified.png" alt="Sample of MNIST. Each row is a number from 0-9 (ordered) and each column is a variation of the number." class="img-fluid">
+            </a>
+        </section>
+        <section class="activity-steps mb-4">
+            <h2 class="mb-3">Steps for Activity</h2>
+            <ol class="list-group list-group-flush">
+                <li class="list-group-item">Find the SD card reader and SD card in your robot kit. It should look something like this: <img src="http://www.yahboom.net/public/upload/upload-html/1692932428/01.png" alt="Image of SD card reader with SD card inserted." class="img-fluid"> Insert this into your computer.</li>
+                <li class="list-group-item">Download this <a href="https://o365coloradoedu-my.sharepoint.com/:u:/g/personal/jomy5901_colorado_edu/ET3zx7O-vh1Bmmu68QzEEO0BgevnF4imsMpGRhApma_Ljg?e=z8I45s">zip files</a> onto the device (usually called NONAME) and unzip the files. It should look like <img src="img/noname.png" alt="A list of 4 folders: microbit, 08_AI_Vision_Code, k210, KPU, and a file called main.py" class="img-fluid"></li>
+                <li class="list-group-item">Copy the file <code>2.9_3.8_mnist.py</code> from the <code>KPU directory</code> to the root and name it <code>main.py</code>. You may need to delete the existing <code>main.py</code> first.</li>
+                <li class="list-group-item">Safely eject the USB device and insert the SD card into the camera module. We are now ready to code a bit!</li>
+                <li class="list-group-item">Go to <a href="https://makecode.microbit.org/">makecode</a> and start a new project, we recommend calling it MNIST. Click on the extensions panel on the left side and add this url: <a href="https://github.com/YahboomTechnology/K210-Module.git">https://github.com/YahboomTechnology/K210-Module.git</a>. The result should yield the k210_module. Now let's try to recreate this code! <img src="img/extension.png" alt="Screen showing pasted link with search result for k210." class="img-fluid"> The green blocks can be found in the k210_module, feel free to make any other adjustments you want (like smiley faces on a specific number).</li>
+                <li class="list-group-item">Once you're done coding, download it onto the micro:bit and safely disconnect your micro:bit from the computer.</li>
+            </ol>
+        </section>
+        <section class="trials mb-4">
+            <h2 class="mb-3">Things to Try</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Remember we can only recognize numbers 0-9, first try writing a few numbers on a nice clear piece of paper. Can the model recognize them (the number will be shown in the upper left corner)?</li>
+                <li class="list-group-item">What if the background of what the camera sees is cluttered?</li>
+                <li class="list-group-item">What if you make numbers greater than 9?</li>
+                <li class="list-group-item">Draw a bunch of numbers and keep track of how many your robot AI gets right and how many it gets wrong -- this will tell us how accurate we are! <img src="http://www.yahboom.net/public/upload/upload-html/1692932428/13.png" alt="Yahboom robot recognizing the number 6." class="img-fluid"></li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

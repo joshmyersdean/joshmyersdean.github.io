@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+header, section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    color: #444;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+a {
+    color: #06c;
+}
+
+img {
+    width: 100%;
+    max-width: 320px;
+    display: block;
+    margin-top: 10px;
+}
+
+ul li, ol li {
+    margin-bottom: 10px;
+}
