@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Southern Sun Bill Splitter</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      max-width: 800px;
+      margin: 30px auto;
+      background: #fef9f5;
+      color: #333;
+    }
+    h2 {
+      font-size: 2rem;
+      color: #8b2e16;
+      border-bottom: 3px solid #8b2e16;
+      padding-bottom: 5px;
+    }
+    input, button {
+      margin: 6px 5px;
+      padding: 8px;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #d8c3a5;
+      padding: 10px;
+      text-align: right;
+    }
+    th {
+      background: #f4e1d2;
+      text-align: left;
+    }
+    .delete-btn {
+      background: #d9534f;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .delete-btn:hover {
+      background: #c9302c;
+    }
+    #results {
+      margin-top: 30px;
+      font-size: 1rem;
+      background: #fff6f0;
+      border: 1px solid #e1cfc0;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    strong {
+      color: #8b2e16;
+    }
+  </style>
+</head>
+<body>
+  <h2>Southern Sun Bill Splitter</h2>
+
+  <table id="peopleTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Pre-Tax Total</th>
+        <th>Amount Paid</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <th id="subtotalSum">$0.00</th>
+        <th id="paidSum">$0.00</th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <input id="nameInput" placeholder="Name">
+  <input id="subtotalInput" type="number" step="0.01" placeholder="Pre-tax total">
+  <input id="paidInput" type="number" step="0.01" placeholder="Paid">
+  <button id="addBtn">Add</button>
+
+  <br>
+  <label>Total on Receipt: <input id="finalTotal" type="number" step="0.01"></label>
+  <label><input type="checkbox" id="includeChangeBack"> Include change back</label>
+  <button id="calcBtn">Calculate</button>
+
+  <div id="results"></div>
+<script>
+  const people = [];
+
+  function addPerson() {
+    const name = document.getElementById('nameInput').value.trim();
+    const subtotal = parseFloat(document.getElementById('subtotalInput').value);
+    const paid = parseFloat(document.getElementById('paidInput').value);
+    if (!name || isNaN(subtotal) || isNaN(paid)) return alert("Fill in all fields");
+    people.push({ name, subtotal, paid });
+    updateTable();
+    document.getElementById('nameInput').value = '';
+    document.getElementById('subtotalInput').value = '';
+    document.getElementById('paidInput').value = '';
+  }
+
+  function deletePerson(index) {
+    people.splice(index, 1);
+    updateTable();
+  }
+
+  function updateTable() {
+    const tbody = document.querySelector('#peopleTable tbody');
+    tbody.innerHTML = '';
+    let subtotalSum = 0, paidSum = 0;
+    people.forEach((p, i) => {
+      subtotalSum += p.subtotal;
+      paidSum += p.paid;
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td style="text-align:left">${p.name}</td>
+        <td>$${p.subtotal.toFixed(2)}</td>
+        <td>$${p.paid.toFixed(2)}</td>
+        <td><button class="delete-btn" onclick="deletePerson(${i})">Delete</button></td>
+      `;
+      tbody.appendChild(row);
+    });
+    document.getElementById('subtotalSum').textContent = `$${subtotalSum.toFixed(2)}`;
+    document.getElementById('paidSum').textContent = `$${paidSum.toFixed(2)}`;
+  }
+
+  function calculate() {
+    const receiptTotal = parseFloat(document.getElementById('finalTotal').value);
+    const includeChange = document.getElementById('includeChangeBack').checked;
+    const subtotal = people.reduce((sum, p) => sum + p.subtotal, 0);
+    const totalPaid = people.reduce((sum, p) => sum + p.paid, 0);
+    const changeBack = includeChange ? Math.max(0, totalPaid - receiptTotal) : 0;
+
+    if (isNaN(receiptTotal) || receiptTotal < subtotal) {
+      alert("Final total must be greater than subtotal.");
+      return;
+    }
+
+    const multiplier = receiptTotal / subtotal;
+    let balances = people.map(p => ({
+      name: p.name,
+      subtotal: p.subtotal,
+      owes: p.subtotal * multiplier,
+      paid: p.paid,
+      rawOwes: p.subtotal * multiplier
+    }));
+
+    let changeReceivers = [];
+    if (changeBack > 0) {
+      const totalOverpaid = balances
+        .map(p => p.paid - p.rawOwes)
+        .filter(x => x > 0)
+        .reduce((sum, x) => sum + x, 0);
+
+      balances = balances.map(p => {
+        const overpaid = p.paid - p.rawOwes;
+        const share = overpaid > 0 ? (overpaid / totalOverpaid) * changeBack : 0;
+        if (share > 0) {
+          changeReceivers.push(`${p.name} receives $${share.toFixed(2)} in change`);
+        }
+        return { ...p, owes: p.rawOwes - share };
+      });
+    }
+
+    balances = balances.map(p => ({ ...p, net: p.paid - p.owes }));
+
+    let results = `<table><tr><th>Name</th><th>Owes</th><th>Paid</th><th>Net</th></tr>`;
+    balances.forEach(b => {
+      const netStr = b.net >= 0 ? `+${b.net.toFixed(2)}` : b.net.toFixed(2);
+      results += `<tr><td>${b.name}</td><td>$${b.owes.toFixed(2)}</td><td>$${b.paid.toFixed(2)}</td><td>${netStr}</td></tr>`;
+    });
+    results += `</table><br>`;
+
+    const settlements = [];
+    let creditors = balances.filter(b => b.net > 0.01).map(b => ({ name: b.name, net: b.net }));
+    let debtors = balances.filter(b => b.net < -0.01).map(b => ({ name: b.name, net: b.net }));
+
+    creditors.sort((a, b) => b.net - a.net);
+    debtors.sort((a, b) => a.net - b.net);
+
+    for (const debtor of debtors) {
+      let remainingDebt = -debtor.net;
+      for (const creditor of creditors) {
+        if (creditor.net < 0.01) continue;
+        const amount = Math.min(remainingDebt, creditor.net);
+        if (amount > 0.01) {
+          settlements.push(`${debtor.name} owes ${creditor.name} $${amount.toFixed(2)}`);
+          creditor.net -= amount;
+          remainingDebt -= amount;
+          if (remainingDebt < 0.01) break;
+        }
+      }
+    }
+
+    results += `<strong>Settlements:</strong><br>${settlements.join('<br>')}`;
+    if (changeReceivers.length > 0) {
+      results += `<br><br><strong>Change Returned:</strong><br>${changeReceivers.join('<br>')}`;
+    }
+
+    document.getElementById('results').innerHTML = results;
+  }
+
+  document.getElementById("addBtn").addEventListener("click", addPerson);
+  document.getElementById("calcBtn").addEventListener("click", calculate);
+</script>
+</body>
+</html>
+
