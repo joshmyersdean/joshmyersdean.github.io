@@ -2,31 +2,37 @@
 <html>
 <head>
   <title>Southern Sun Bill Splitter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       font-family: 'Georgia', serif;
-      max-width: 800px;
-      margin: 30px auto;
+      margin: 20px;
       background: #fef9f5;
       color: #333;
+      padding: 10px;
     }
     h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #8b2e16;
       border-bottom: 3px solid #8b2e16;
       padding-bottom: 5px;
+      margin-bottom: 15px;
+      text-align: center;
     }
     input, button {
       margin: 6px 5px;
-      padding: 8px;
+      padding: 10px;
       font-size: 1rem;
       border-radius: 4px;
       border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 15px;
+      font-size: 0.9rem;
     }
     th, td {
       border: 1px solid #d8c3a5;
@@ -59,6 +65,21 @@
     strong {
       color: #8b2e16;
     }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    @media (min-width: 600px) {
+      .input-group {
+        flex-direction: row;
+        align-items: center;
+      }
+      input[type="checkbox"] {
+        width: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -84,17 +105,23 @@
     </tfoot>
   </table>
 
-  <input id="nameInput" placeholder="Name">
-  <input id="subtotalInput" type="number" step="0.01" placeholder="Pre-tax total">
-  <input id="paidInput" type="number" step="0.01" placeholder="Paid">
-  <button id="addBtn">Add</button>
+  <div class="input-group">
+    <input id="nameInput" placeholder="Name">
+    <input id="subtotalInput" type="number" step="0.01" placeholder="Pre-tax total">
+    <input id="paidInput" type="number" step="0.01" placeholder="Paid">
+    <button id="addBtn">Add</button>
+  </div>
 
-  <br>
-  <label>Total on Receipt: <input id="finalTotal" type="number" step="0.01"></label>
-  <label><input type="checkbox" id="includeChangeBack"> Include change back</label>
-  <button id="calcBtn">Calculate</button>
+  <div class="input-group">
+    <label>Total on Receipt: <input id="finalTotal" type="number" step="0.01"></label>
+    <label><input type="checkbox" id="includeChangeBack"> Include change back</label>
+    <button id="calcBtn">Calculate</button>
+  </div>
 
   <div id="results"></div>
+
+
+
 <script>
   const people = [];
 
@@ -216,4 +243,3 @@
 </script>
 </body>
 </html>
-
